@@ -1,0 +1,57 @@
+<div class="offerRide-form">
+    <div class="tableName">
+        <strong>Car Ride Registration Form</strong>
+    </div>
+    <form [formGroup]="offerRideForm">
+        <div class="form-group">
+          <label class="spacing" for="name"><strong>Name</strong></label>
+          <input type="text" class="form-control" formControlName="name" id="Name"  placeholder="Enter Name">
+          <p *ngIf="(offerRideForm.controls['name'].dirty ||
+          offerRideForm.controls['name'].touched) && offerRideForm.controls['name'].errors && offerRideForm.controls['name'].errors['required']" class="errorMessage">
+            This field is required!
+          </p>  
+        </div>
+        <div class="form-group">
+          <label class="spacing" for="Start"><strong>Start Location</strong></label>
+          <input type="text" class="form-control" formControlName="start" id="Start" placeholder="Start">
+            <p *ngIf="(offerRideForm.controls['start'].dirty ||
+            offerRideForm.controls['start'].touched) && offerRideForm.controls['start'].errors && offerRideForm.controls['start'].errors['required']" class="errorMessage">
+                This field is required!
+            </p>                
+        </div>
+        <div class="form-group">
+            <label class="spacing" for="Stop"><strong>Destination</strong></label>
+            <input type="text" class="form-control" formControlName="destination" id="Stop" placeholder="Stop">
+              <p *ngIf="(offerRideForm.controls['destination'].dirty ||
+              offerRideForm.controls['destination'].touched) && offerRideForm.controls['destination'].errors && offerRideForm.controls['destination'].errors['required']" class="errorMessage">
+                  This field is required!
+              </p>                
+        </div>
+        <div class="form-group">
+            <label class="spacing" for="Car"><strong>Car</strong></label>
+            <input type="text" class="form-control" formControlName="car" id="Car" placeholder="Car">
+                <p *ngIf="(offerRideForm.controls['car'].dirty ||
+                offerRideForm.controls['car'].touched) && offerRideForm.controls['car'].errors && offerRideForm.controls['car'].errors['required']" class="errorMessage">
+                    This field is required!
+                </p>                
+        </div>
+        <div class="form-group">
+            <label class="spacing" for="Seats"><strong>Seats</strong></label>
+            <input type="text" class="form-control" formControlName="seats" id="Seats" placeholder="Seats">
+                <p *ngIf="(offerRideForm.controls['seats'].dirty ||
+                offerRideForm.controls['seats'].touched) && offerRideForm.controls['seats'].errors && offerRideForm.controls['seats'].errors['required']" class="errorMessage">
+                    This field is required!
+                </p>  
+                <p *ngIf="offerRideForm.controls['seats'].errors && offerRideForm.controls['seats'].errors['InvalidSeats']" class="errorMessage">
+                    Seats should be greater than 0 and less than 8
+                </p>              
+        </div>
+        <div class="spacing">
+            <button type="submit" [disabled]="showMessage" (click)="addRideDetails()" class="btn btn-primary">Submit</button>
+            <button type="submit" (click)="goBack()" class="btn btn-primary">Go Back</button>
+        </div>
+        <div [hidden]="!showMessage">
+            <span class="text-color">Added Successfully!</span>
+        </div>
+    </form>
+</div>

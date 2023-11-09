@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+:host{
+    display: block;
+}
+body{
+    background: linear-gradient(to left, #fff 60%, #73a7da);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

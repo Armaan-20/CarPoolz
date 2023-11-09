@@ -1,0 +1,39 @@
+<div class="center">
+    <div [ngStyle]="{
+      border: borderStyle,
+      background: borderColor,
+    }">
+    <strong>Book a Ride</strong>
+    </div>
+    <div>
+      <p>Pool carz is an online Application that enables users to share rides with others. You can either book a ride or offer a ride. Did we mention that this app is advertisement free? To add on top of that its free of cost! So what are you waiting for? Checkout the rides available and start PCing!!</p>
+    </div>
+    <button type="button" [ngClass]="hideTable? 'button' : 'activeButton'" (click)="onClick()"><strong>Show All Rides</strong></button>
+    <button type="button" class="button" [hidden]="hideTable" (click)="toOffice()"><strong>To Office</strong></button>
+    <button type="button" class="button" [hidden]="hideTable" (click)="fromOffice()"><strong>From Office</strong></button>
+    <button type="button" class="button" [hidden]="hideTable"><strong>Others</strong></button>
+    <p class="colored" [hidden]="hideTable">Please select a ride!</p>
+    <table [hidden]="hideTable" class="table table-bordered table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">Start Point</th>
+          <th scope="col">End Point</th>
+          <th scope="col">Seats Available</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let x of bookingArray | showToFrom : location">
+          <tr (click)="onRowSelect(x.id)">
+            <td>{{x.pickUp}}</td>
+            <td>{{x.destination}}</td>
+            <td>{{x.seatsLeft}}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <app-ride-details [rideDetails] = "rideDetails" [showRide] = "showRide" (hideAllRides)="hideRides()"></app-ride-details>
+    <button type="button" class="button" (click)="offerRide()"><strong>Offer A Ride!</strong></button>
+  </div>
+  
+  
+  

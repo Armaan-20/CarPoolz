@@ -1,0 +1,29 @@
+<div class="login-form">
+    <div class="tableName">
+      <strong>Login Form</strong>
+    </div>
+    <form [formGroup]="registerForm">
+        <div class="form-group">
+          <label class="spacing" for="exampleInputEmail1"><strong>User Name</strong></label>
+          <input type="email" class="form-control" formControlName="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <p *ngIf="(registerForm.controls['username'].dirty ||
+          registerForm.controls['username'].touched) && registerForm.controls['username'].errors && registerForm.controls['username'].errors['required']" class="errorMessage">
+            This field is required!
+          </p>  
+        </div>
+        <div class="form-group">
+          <label class="spacing" for="exampleInputPassword1"><strong>Password</strong></label>
+          <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Password">
+            <p *ngIf="(registerForm.controls['password'].dirty ||
+            registerForm.controls['password'].touched) && registerForm.controls['password'].errors && registerForm.controls['password'].errors['required']" class="errorMessage">
+                This field is required!
+            </p>                
+        </div>
+        <div [hidden]="hideErrorMessage">
+          <p class="errorMessage">Invalid Credentials!</p>
+        </div>
+        <div class="spacing">
+            <button type="submit" (click)="checkValidUser()" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,43 @@
+<div *ngIf="rideDetails && showRide">
+    <div [ngStyle]="{
+        border: borderStyle,
+        background: borderColor,
+      }">
+      <strong>Ride Details</strong>
+    </div>
+
+    <div class="spacing">
+        <table class="table table-bordered table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Car</th>
+                    <th>Seats Left</th>
+                    <th>Pick Up</th>
+                    <th>Destination</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{rideDetails.id}}</td>
+                    <td>{{rideDetails.name}}</td>
+                    <td>{{rideDetails.car}}</td>
+                    <td>{{rideDetails.seatsLeft}}</td>
+                    <td>{{rideDetails.pickUp}}</td>
+                    <td>{{rideDetails.destination}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div [hidden]="hideMessage">
+            <span class="spanText">Booking Done! Your Booking Id: {{rideDetails.id}}</span>
+        </div>
+        <div [hidden]="!(hideMessage && clicked)">
+            <span class="spanText">Booking Cancelled!</span>
+        </div>
+        <div [hidden]="!ownBooking">
+            <span class="spanText">Cannot book your own ride!</span>
+        </div>
+        <button type="button" class="button" [disabled]="ownBooking || disable" #dynamicButton (click)="renderBooking()"><strong>Book</strong></button>
+    </div>
+</div>
