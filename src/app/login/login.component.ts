@@ -16,7 +16,20 @@ export class LoginComponent implements OnInit{
   hideErrorMessage: boolean = true;
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private updateService: UpdateRidesService){}
   ngOnInit(): void {
-    this.getUsers();
+    this.usersArray = [
+      {
+          "username": "admin",
+          "password": "admin"
+      },
+      {
+          "username": "test1",
+          "password": "test1"
+      },
+      {
+          "username": "test2",
+          "password": "test2"
+      }
+  ];
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -24,13 +37,13 @@ export class LoginComponent implements OnInit{
     this.updateService.setIsLogin = true;
   }
 
-  getUsers(){
-    this.http.get('http://localhost:4200/assets/user.json')
-    .subscribe((data) => {
-      this.usersArray = data;
-      console.log(this.usersArray)
-    })
-  }
+  // getUsers(){
+  //   this.http.get('http://localhost:4200/assets/user.json')
+  //   .subscribe((data) => {
+  //     this.usersArray = data;
+  //     console.log(this.usersArray)
+  //   })
+  // }
 
   checkValidUser(){
     this.usersArray.forEach((login: any) => {
